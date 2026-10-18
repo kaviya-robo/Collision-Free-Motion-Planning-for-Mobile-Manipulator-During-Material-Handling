@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+  Mobile Manipulator: TurtleBot3 Waffle Pi + OpenMANIPULATOR-X
+  Generated from the parametric SolidWorks 2025 model by tools/gen_urdf.py.
+  Kinematics, joint limits, link/joint names and inertials are identical to the official
+  ROBOTIS turtlebot3_manipulation_description (ROS 2 Humble); the meshes come from the
+  parametric SolidWorks parts in 01_SolidWorks_2025.
+-->
+<robot name="turtlebot3_manipulation" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default="" />
+  <xacro:arg name="use_sim" default="false" />
+  <xacro:arg name="use_fake_hardware" default="false" />
+  <xacro:arg name="fake_sensor_commands" default="false" />
+
+  <!-- geometry from the SolidWorks model (this package) -->
+  <xacro:include filename="$(find tb3_omx_description)/urdf/tb3_omx_body.urdf.xacro" />
+  <!-- official Gazebo + ros2_control macros (turtlebot3_manipulation_description) -->
+  <xacro:include filename="$(find turtlebot3_manipulation_description)/gazebo/turtlebot3_waffle_pi.gazebo.xacro" />
+  <xacro:include filename="$(find turtlebot3_manipulation_description)/gazebo/open_manipulator_x.gazebo.xacro" />
+  <xacro:include filename="$(find turtlebot3_manipulation_description)/ros2_control/turtlebot3_manipulation_system.ros2_control.xacro" />
+
+  <xacro:tb3_omx prefix="$(arg prefix)" />
+  <xacro:turtlebot3_waffle_pi_gazebo prefix="$(arg prefix)" />
+  <xacro:open_manipulator_x_gazebo prefix="$(arg prefix)" />
+
+  <xacro:turtlebot3_manipulation_system
+    name="TurtleBot3ManipulationSystem" prefix="$(arg prefix)" use_sim="$(arg use_sim)"
+    use_fake_hardware="$(arg use_fake_hardware)"
+    fake_sensor_commands="$(arg fake_sensor_commands)"/>
+
+  <gazebo>
+    <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+      <parameters>$(find turtlebot3_manipulation_bringup)/config/gazebo_controller_manager.yaml</parameters>
+    </plugin>
+  </gazebo>
+</robot>
