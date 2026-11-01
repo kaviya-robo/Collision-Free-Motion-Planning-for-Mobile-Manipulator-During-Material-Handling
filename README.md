@@ -2,7 +2,7 @@
 
 A TurtleBot3 Waffle Pi carrying an OpenMANIPULATOR-X arm: a parametric SolidWorks model, a ROS 2 Humble description package, and a simulation-based comparison of three sampling-based motion planners (RRT, RRT*, PRM).
 
-Subject: Robot Dynamic Control. Project review: 14 October 2026.
+Subject: Robot Dynamic Control.
 
 **Team:** Kaviyashree T S, Barath K M, Jyothish S, Nabeeha Naaz H
 
